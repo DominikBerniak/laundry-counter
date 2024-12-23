@@ -12,3 +12,7 @@
 #counter-display{
     font-size: 170px;
 }
+
+#btn-add, #btn-remove {
+    touch-action: manipulation;
+}
