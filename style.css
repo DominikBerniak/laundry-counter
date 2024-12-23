@@ -1,3 +1,7 @@
+* {
+    user-select: none;
+}
+
 .centered-page-container {
     position: absolute;
     top: 50%;
