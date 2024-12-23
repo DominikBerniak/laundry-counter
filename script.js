@@ -12,8 +12,22 @@ let allAvailableEmptySpaces = undefined;
 let currentAvailableEmptySpaces = undefined;
 
 const DEFAULT_INPUT_VALUE = 32;
+const MAX_INPUT_VALUE = 99;
+const MIN_INPUT_VALUE = 0;
 
 spacesEmptyInput.value = DEFAULT_INPUT_VALUE;
+
+spacesEmptyInput.addEventListener("change", (e) => {
+    if(e.target.value > MAX_INPUT_VALUE)
+    {
+        spacesEmptyInput.value = MAX_INPUT_VALUE;
+        e.preventDefault();
+    }
+    else if (e.target.value < MIN_INPUT_VALUE) {
+        spacesEmptyInput.value = MIN_INPUT_VALUE;
+        e.preventDefault();
+    }
+})
 
 startBtn.addEventListener("click", () => {
     allAvailableEmptySpaces = spacesEmptyInput.value;

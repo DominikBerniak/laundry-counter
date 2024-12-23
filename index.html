@@ -10,22 +10,22 @@
   <link rel="stylesheet" href="bootstrap.min.css" />
 </head>
 
-<body>
-    <div id="start-form-container" class="centered-page-container container d-flex flex-column bg-primary-subtle justify-content-center align-items-center rounded">
-        <div class="w-50">
+<body class="bg-primary-subtle">
+    <div id="start-form-container" class="centered-page-container container d-flex flex-column justify-content-center align-items-center rounded">
+        <div class="w-75">
             <label for="spaces-empty" class="form-label fs-2">Empty spaces on the rack</label>
-            <input id="spaces-empty" class="form-control fs-2" type="number"/>
+            <input id="spaces-empty" class="form-control fs-2" type="number" max="99" min="0" />
             <button id="start-btn" type="button" class="btn btn-primary mt-4 px-5 fw-bold w-100 fs-2">Let's count!</button>
         </div>
     </div>
-    <div id="counter-container" class="centered-page-container d-none container d-flex flex-column bg-primary-subtle justify-content-center align-items-center rounded">
+    <div id="counter-container" class="centered-page-container d-none container d-flex flex-column justify-content-center align-items-center rounded">
         <h1 class="fw-bold">Empty spaces left:</h1>
-        <div id="counter-display-container" class="rounded w-50 h-50 bg-info d-flex justify-content-center align-items-center">
+        <div id="counter-display-container" class="rounded w-75 h-50 bg-info d-flex justify-content-center align-items-center">
             <div id="counter-display" class="fw-bold"></div>
         </div>
-        <button id="btn-add" type="button" class="btn btn-primary mt-4 px-5 fw-bold w-50 fs-2">Add piece +</button>
-        <button id="btn-remove" type="button" class="btn btn-warning mt-3 px-5 fw-bold w-50 fs-2">Remove piece -</button>
-        <button id="btn-restart" type="button" class="btn btn-danger mt-5 px-5 fw-bold w-50 fs-2">Start over</button>
+        <button id="btn-add" type="button" class="btn btn-primary mt-4 px-5 fw-bold w-75 fs-2">Add piece +</button>
+        <button id="btn-remove" type="button" class="btn btn-warning mt-3 px-5 fw-bold w-75 fs-2">Remove piece -</button>
+        <button id="btn-restart" type="button" class="btn btn-danger mt-5 px-5 fw-bold w-75 fs-2">Start over</button>
     </div>
   <script type="text/javascript" src="script.js"></script>
   <script type="text/javascript" src="bootstrap.bundle.min.js"></script>
