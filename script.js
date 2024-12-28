@@ -14,8 +14,21 @@ let currentAvailableEmptySpaces = undefined;
 const DEFAULT_INPUT_VALUE = 32;
 const MAX_INPUT_VALUE = 99;
 const MIN_INPUT_VALUE = 0;
+const LOCALE_STORAGE_KEY = 'laundry-counter-data';
 
-spacesEmptyInput.value = DEFAULT_INPUT_VALUE;
+
+const savedDataString = localStorage.getItem(LOCALE_STORAGE_KEY);
+
+if(savedDataString) {
+    const saveDataObj = JSON.parse(savedDataString);
+    allAvailableEmptySpaces = saveDataObj?.allAvailableEmptySpaces;
+    startFormContainer.classList.add('d-none');
+    counterContainer.classList.remove('d-none');
+    currentAvailableEmptySpaces = saveDataObj?.currentAvailableEmptySpaces;
+    counterDisplay.innerHTML = currentAvailableEmptySpaces;
+} else {
+    spacesEmptyInput.value = DEFAULT_INPUT_VALUE;
+}
 
 spacesEmptyInput.addEventListener("change", (e) => {
     if(e.target.value > MAX_INPUT_VALUE)
@@ -35,20 +48,24 @@ startBtn.addEventListener("click", () => {
     counterContainer.classList.remove('d-none');
     currentAvailableEmptySpaces = allAvailableEmptySpaces;
     counterDisplay.innerHTML = currentAvailableEmptySpaces;
+
+    setStorageData(parseInt(allAvailableEmptySpaces), parseInt(currentAvailableEmptySpaces));
 });
 
 btnAdd.addEventListener("click", () => {
     if (currentAvailableEmptySpaces > 0)
         currentAvailableEmptySpaces -= 1;
 
-    counterDisplay.innerHTML = currentAvailableEmptySpaces
+    counterDisplay.innerHTML = currentAvailableEmptySpaces;
+    setStorageData(parseInt(allAvailableEmptySpaces), parseInt(currentAvailableEmptySpaces));
 });
 
 btnRemove.addEventListener("click", () => {
     if (currentAvailableEmptySpaces < allAvailableEmptySpaces)
         currentAvailableEmptySpaces += 1;
 
-    counterDisplay.innerHTML = currentAvailableEmptySpaces
+    counterDisplay.innerHTML = currentAvailableEmptySpaces;
+    setStorageData(parseInt(allAvailableEmptySpaces), parseInt(currentAvailableEmptySpaces));
 });
 
 btnRestart.addEventListener("click", () => {
@@ -58,4 +75,10 @@ btnRestart.addEventListener("click", () => {
     counterContainer.classList.add('d-none');
     counterDisplay.innerHTML = currentAvailableEmptySpaces;
     spacesEmptyInput.value = DEFAULT_INPUT_VALUE;
+    localStorage.clear();
 });
+
+function setStorageData(allAvailableEmptySpaces, currentAvailableEmptySpaces) {
+    const saveDataObj = {allAvailableEmptySpaces, currentAvailableEmptySpaces};
+    localStorage.setItem(LOCALE_STORAGE_KEY, JSON.stringify(saveDataObj));
+}
